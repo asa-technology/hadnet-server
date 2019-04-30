@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/adam-hebert656/hadnet-server#readme",
   "dependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4"
   }
 }
