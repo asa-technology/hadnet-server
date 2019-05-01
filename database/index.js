@@ -30,7 +30,7 @@ sequelize.authenticate()
         console.error('Unable to connect to the database:', err);
     });
 
-  ///////
+  //*******///////TABLES///////*******//
   //ACCOUNT
   //username: string
   //password: string
@@ -58,11 +58,23 @@ sequelize.authenticate()
   //email: string
   //image_url: string
 
+  //COMMUNITY_LISTING
+  //user_id --> foreign key
+  //business_id --> foreign key
+  //title: string
+  //body: string
+  //image_url: string
+  //listing_type: string
+
   //REVIEW
   //user_id --> foreign key
   //business_id --foreign key
   //text: string
   //rating: integer
+
+
+
+  //*******///////HELPER FUNCTIONS///////*******//
 
 
 module.exports.db = sequelize;
