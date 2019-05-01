@@ -30,30 +30,32 @@ sequelize.authenticate()
         console.error('Unable to connect to the database:', err);
     });
 
+const Model = Sequelize.Model;
+
   //*******///////TABLES///////*******//
 
   //User table stores all data for Auth
   class User extends Model {};
   User.init({
       email:{
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         unique: true,
         allowNull: false,
       } ,
       display_name: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       account_type: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       google_id: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       url_image: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false, 
       },
   },{
@@ -74,14 +76,14 @@ sequelize.authenticate()
   class BusinessType extends Model {};
   BusinessType.init({
     type: {
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
     modelName: 'businesstype',
     underscored: true,
-  })
+  });
 
   //BUSINESSTYPE
   //type: string
@@ -91,14 +93,14 @@ sequelize.authenticate()
   class ListingType extends Model {};
   ListingType.init({
     type: {
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     }
   }, {
     sequelize,
     modelName: 'listingtype',
     underscored: true,
-  })
+  });
 
   //LISTINGTYPE
   //type: string
@@ -106,32 +108,25 @@ sequelize.authenticate()
   class Business extends Model {};
   Business.init({
     name:{
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
-    phone_number: sequelize.INTEGER,
-    email: sequelize.STRING,
-    url_homepage: sequelize.STRING,
+    phone_number: Sequelize.INTEGER,
+    email: Sequelize.STRING,
+    url_homepage: Sequelize.STRING,
     address: {
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
-    latitude: sequelize.FLOAT,
-    longitude: sequelize.FLOAT,
-    average_rating: sequelize.INTEGER,
-    legal_business_name: sequelize.STRING,
+    latitude: Sequelize.FLOAT,
+    longitude: Sequelize.FLOAT,
+    average_rating: Sequelize.INTEGER,
+    legal_business_name: Sequelize.STRING,
   },{
     sequelize,
     modelName: 'business',
     underscored: true,
-  })
-  /***************TODO**************
-   * FOREIGN KEYS
-   * -----------------
-   * id_business_type
-   * id_featured_image
-   * id_user
-   */
+  });
 
   //BUSINESS
   //name: string
@@ -151,29 +146,21 @@ sequelize.authenticate()
   class CommunityListing extends Model {};
   CommunityListing.init({
     title: {
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     body: {
-      type: sequelize.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
-    image_url: sequelize.STRING,
-    date_expire: sequelize.DATEONLY,
+    image_url: Sequelize.STRING,
+    date_expire: Sequelize.DATEONLY,
   },{
     sequelize,
     modelName: 'communitylisting',
     underscored: true,
-  })
-
-  /***************TODO**************
-   * FOREIGN KEYS
-   * -----------------
-   * id_user
-   * id_business
-   * id_listing_type
-   */
-
+  });
+  
   //COMMUNITY_LISTING
   //id_user --> foreign key
   //id_business --> foreign key
@@ -183,15 +170,61 @@ sequelize.authenticate()
   //id_listing_type: --> foreign key
   //date_expire: date
 
+
+  //Review will hold all review data
+  class Review extends Model {};
+  Review.init({
+    text:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    }
+  },{
+    sequelize,
+    modelName: 'review',
+    underscored: true,
+  });
+
   //REVIEW
   //id_user --> foreign key
   //id_business --foreign key
   //text: string
   //rating_number: integer
 
+  //Image will hold all image urls
+  class Image extends Model {}
+  Image.init({
+    url:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+  },{
+    sequelize,
+    modelName: 'image',
+    underscored: true,
+  });
+
   //IMAGE
   //url: string
   //id_business --> foreign key
+
+
+  // Business foreign keys
+  BusinessType.hasOne(Business, {foreignKey: 'id_business_type'});
+  Image.hasOne(Business, {foreignKey: 'id_featured_image'});
+  User.hasOne(Business, {foreignKey: 'id_user'});
+
+  //CommunityListing foreign keys
+  User.hasOne(CommunityListing, {foreignKey: 'id_user'});
+  Business.hasOne(CommunityListing, {foreignKey: 'id_business'});
+  ListingType.hasOne(CommunityListing, {foreignKey: 'id_listing_type'});
+
+  //Review foreign keys
+  User.hasOne(Review, {foreignKey: 'id_user'});
+  Business.hasOne(Review, {foreignKey: 'id_business'});
+
+  //Image foreign keys
+  Business.hasOne(Image, {foreignKey: 'id_business'})
+  sequelize.sync();
 
 
 
@@ -199,4 +232,13 @@ sequelize.authenticate()
   //*******///////HELPER FUNCTIONS///////*******//
 
 
-module.exports.db = sequelize;
+module.exports = {
+  db: sequelize,
+  User,
+  BusinessType,
+  ListingType,
+  Business,
+  CommunityListing,
+  Review,
+  Image,
+}

@@ -1,8 +1,8 @@
-//REVIEW
-  //user_id --> foreign key
-  //business_id --foreign key
+  //REVIEW
+  //id_user --> foreign key
+  //id_business --foreign key
   //text: string
-  //rating: integer
+  //rating_number: integer
 
 module.exports.reviews = [
     {

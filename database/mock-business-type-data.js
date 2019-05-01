@@ -1,0 +1,2 @@
+ //BUSINESSTYPE
+  //type: string

@@ -1,0 +1,2 @@
+  //LISTINGTYPE
+  //type: string
