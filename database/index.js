@@ -210,7 +210,10 @@ const Model = Sequelize.Model;
 
   // Business foreign keys
   BusinessType.hasOne(Business, {foreignKey: 'id_business_type'});
-  Image.hasOne(Business, {foreignKey: 'id_featured_image'});
+  Image.hasOne(Business, {
+    foreignKey: 'id_featured_image',
+    constraints: false,
+  });
   User.hasOne(Business, {foreignKey: 'id_user'});
 
   //CommunityListing foreign keys
