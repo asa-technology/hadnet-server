@@ -24,7 +24,8 @@ module.exports.businesses = [
         longitude: -90.077200,
         average_rating: 4,
         verified: true,
-        legal_business_name: "Autoserv"
+        legal_business_name: "Autoserv",
+        account_id: 1,
     },{
         business_type: "Law Office",
         phone_number: 5041424231,
@@ -36,7 +37,8 @@ module.exports.businesses = [
         longitude: -90.121190,
         average_rating: 4.5,
         verified: true,
-        legal_business_name: "John and Sons Law Offices"
+        legal_business_name: "John and Sons Law Offices",
+        account_id: 2,
     },{
         business_type: "Beauty Parlor",
         phone_number: 5044323412,
@@ -48,7 +50,8 @@ module.exports.businesses = [
         longitude: -90.078360,
         average_rating: 5,
         verified: true,
-        legal_business_name: "Beautyhair Inc."
+        legal_business_name: "Beautyhair Inc.",
+        account_id: 3,
     },
     
 ]

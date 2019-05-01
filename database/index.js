@@ -73,7 +73,6 @@ sequelize.authenticate()
   //rating: integer
 
 
-
   //*******///////HELPER FUNCTIONS///////*******//
 
 
