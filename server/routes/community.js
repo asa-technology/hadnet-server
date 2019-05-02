@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { db } = require('../../database/index');
 
 // mock data
 const { communityListings } = require('../../database/mock-community-listings');
