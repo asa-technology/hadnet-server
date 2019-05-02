@@ -22,7 +22,7 @@ const validateWithFacebook = (accessToken) => {
 const retrieveProfilePic = (accessToken, userId) => {
   return new Promise((resolve, reject) => {
     request({
-      url: `http://graph.facebook.com/${userId}/picture`,
+      url: `https://graph.facebook.com/${userId}/picture`,
       qs: {access_token: accessToken}
     }, (err, response, body) => {
       if (!err) {
