@@ -1,10 +1,32 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
+const request = require('request');
 
-router.post('/login', bodyParser.JSON(), (req, res) => {
+const validateWithFacebook = (accessToken) => {
+  return new Promise((resolve, reject) => {
+    request({
+      url: "https://graph.facebook.com/me?fields=email,name",
+      qs: {access_token: accessToken}
+    },
+    (err, response, body) => {
+      if (!error && response.statusCode === 200) {
+        resolve(JSON.parse(body));
+      } else {
+        reject(err);
+      }
+    })
+  })
+}
+
+router.post('/login', bodyParser.json(), (req, res) => {
   console.log('User logged in!');
   console.log('User access token:', req.body);
-  res.send('Logged in!');
+  validateWithFacebook(req.body)
+    .then((response) => {
+      console.log("Response from Facebook Graph API:", response);
+      res.send('Logged in!');
+    })
 })
+
 
 module.exports = router;
