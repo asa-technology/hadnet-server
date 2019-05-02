@@ -9,6 +9,7 @@ const auth = require('./routes/auth');
 const businesses = require('./routes/businesses');
 const community = require('./routes/community');
 const user = require('./routes/user.js')
+const review = require('./routes/review.js')
 
 // authentication route
 app.use('/auth', auth);
@@ -18,5 +19,7 @@ app.use('/business', businesses)
 app.use('/user', user)
 // community route
 app.use('/community', community);
+// review route
+app.use('/review', review)
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
