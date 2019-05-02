@@ -1,8 +1,12 @@
-//USER
-  //account_id --> foreign key
-  //display_name: string
+  //USER
   //email: string
-  //image_url: string
+  //display_name: string
+  //account_type (business/user): string
+  //google_id: integer
+  //url_image: string
+
+
+  //BLEND THIS DATA WITH mock-account-data.js
 
 module.exports.users = [
     {

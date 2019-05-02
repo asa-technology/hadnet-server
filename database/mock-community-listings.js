@@ -1,10 +1,11 @@
- //COMMUNITY_LISTING
-  //user_id --> foreign key
-  //business_id --> foreign key
+  //COMMUNITY_LISTING
+  //id_user --> foreign key
+  //id_business --> foreign key
   //title: string
   //body: string
   //image_url: string
-  //listing_type: string
+  //id_listing_type: --> foreign key
+  //date_expire: date
 
 module.exports.communityListings = [
     {

@@ -1,16 +1,17 @@
- //name: string
-  //business_type: string
+ //BUSINESS
+  //name: string
+  //id_business_type --> foreign key
   //phone_number: integer
   //email: string
-  //business_url: string
-  //image_url: string
+  //url_homepage: string
   //address: string
+  //id_featured_image --> foreign key
   //latitude: integer
   //longitude: integer
+  //id_user: integer --> foreign key
   //average_rating: integer
-  //verified: boolean
   //legal_business_name: string
-  //account_id --> foreign key
+
 
 module.exports.businesses = [
     {
