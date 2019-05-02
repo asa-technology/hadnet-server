@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const app = express();
+const bodyParser = require('body-parser');
 const { db } = require('../database/index');
 const port = process.env.PORT || 3000;
 
@@ -11,6 +12,8 @@ const community = require('./routes/community');
 const user = require('./routes/user.js')
 const review = require('./routes/review.js')
 
+//middleware
+app.use(bodyParser.json())
 // authentication route
 app.use('/auth', auth);
 // businesses route

@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 // gets business at specified id
 router.get('/:id', (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id - 1;
 
   /****************TODO****************
    * get business by id from database

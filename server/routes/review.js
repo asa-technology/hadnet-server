@@ -4,27 +4,28 @@ const { db } = require('../../database/index');
 const { reviews } = require('../../database/mock-reviews');
 
 router.get('/business/:id', (req, res) => {
-  const businessId = req.params.id;
+  const businessId = parseInt(req.params.id);
 
     /****************TODO****************
    * get reviews for specific business
    */
   console.log(`Grabbing all reviews for business id: ${businessId}`)
   const businessReviews = reviews.filter((review) => {
-    return review.id_business === businessId;
+    return (review.id_business === businessId);
   });
+  console.log(businessReviews)
   res.send(businessReviews);
 });
 
 router.get('/user/:id', (req,res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id);
 
     /****************TODO****************
    * get reviews for specific user
    */
   console.log(`Grabbing all reviews for user id: ${userId}`);
   const userReviews = reviews.filter((review) => {
-    return review.id_business === userId;
+    return (review.id_user === userId);
   })
   res.send(userReviews);
 })
