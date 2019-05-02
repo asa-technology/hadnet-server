@@ -26,6 +26,9 @@ router.post('/login', bodyParser.json(), (req, res) => {
       console.log("Response from Facebook Graph API:", response);
       res.send('Logged in!');
     })
+    .catch((error) => {
+      console.error(error);
+    })
 })
 
 
