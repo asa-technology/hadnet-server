@@ -21,7 +21,7 @@ const validateWithFacebook = (accessToken) => {
 router.post('/login', bodyParser.json(), (req, res) => {
   console.log('User logged in!');
   console.log('User access token:', req.body);
-  validateWithFacebook(req.body)
+  validateWithFacebook(req.body.accessToken)
     .then((response) => {
       console.log("Response from Facebook Graph API:", response);
       res.send('Logged in!');
