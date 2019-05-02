@@ -9,7 +9,7 @@ const validateWithFacebook = (accessToken) => {
       qs: {access_token: accessToken}
     },
     (err, response, body) => {
-      if (!error && response.statusCode === 200) {
+      if (!err && response.statusCode === 200) {
         resolve(JSON.parse(body));
       } else {
         reject(err);
