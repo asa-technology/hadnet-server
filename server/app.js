@@ -3,6 +3,7 @@ require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const { db } = require('../database/index');
+
 const port = process.env.PORT || 3000;
 
 //routers
@@ -11,6 +12,7 @@ const businesses = require('./routes/businesses');
 const community = require('./routes/community');
 const user = require('./routes/user.js')
 const review = require('./routes/review.js')
+const api = require('./routes/api');
 
 //middleware
 app.use(bodyParser.json())
@@ -24,5 +26,8 @@ app.use('/user', user)
 app.use('/community', community);
 // review route
 app.use('/review', review)
+//api route
+app.use('/api', api);
+
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
